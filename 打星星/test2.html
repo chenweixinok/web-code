@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>网页标题</title>
+	<meta name="keywords" content="关键字列表" />
+	<meta name="description" content="网页描述" />
+	<link rel="stylesheet" type="text/css" href="" />
+	<style type="text/css"></style>
+	<script type="text/javascript">
+		
+		var n = 0;
+		function action(){
+			//计数
+			n++;
+			var jishu = document.getElementsByTagName("span")[0];
+			jishu.innerHTML = "星星出现的次数为：" + n;
+			if(n >= 20){
+				ting();
+				alert("GAME OVER!");
+				return;
+			}
+			
+		
+			//出现随机的星星图
+			var star = document.createElement("img");
+			star.src = "images/xingxing.gif";
+			document.body.appendChild(star);
+			var x = Math.floor(Math.random() * (1200 - 100 + 0 + 1) + 0);
+			var y = Math.floor(Math.random() * (600 - 100 + 20 + 1) + 20);
+			star.style.position = "absolute";
+			star.style.left = x + "px";
+			star.style.top = y + "px";
+			star.width = Math.floor(Math.random() * (100 - 50 + 1) + 50);
+			star.onclick = deleteMe;
+
+		}
+
+		function deleteMe(){
+			document.body.removeChild(this);
+			n--;
+		}
+
+		var t1,time1,time2;
+		function zou(){
+			time1 = new Date();
+			t1 = setInterval("action()", 400);
+		}
+
+		function ting(){
+			clearInterval(t1);
+		}
+
+
+	
+	
+	</script>
+</head>
+<body>
+	<input type="button" value="开始" id="anniu" onclick="zou()"/>
+	<span></span>
+</body>
+</html>
